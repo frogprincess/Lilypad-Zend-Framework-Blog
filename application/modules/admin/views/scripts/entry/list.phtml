@@ -1,0 +1,29 @@
+
+                            <div class="main-content span-22 last prepend-1 append-1">
+                                <h1 class="top-corners-10">Blog Editing</h1>
+                                <div class="box bottom-corners-10">
+                                <?php
+                                    if (count($this->entries) > 0 ) {
+                                        echo '<ul class="entry-list">';
+                                        foreach ($this->entries as $entry) {
+                                            echo '<li><h3 class="hide' . $entry->hide. '">'.$entry->title.' -
+                                                    <a href="/admin/entry/edit/id/'.$entry->id.'/">Edit</a> | ';
+                                                        if ($entry->hide) {
+                                                            echo '<a href="/admin/entry/show/id/'.$entry->id.'/">Show</a>';
+                                                        } else {
+                                                            echo '<a href="/admin/entry/hide/id/'.$entry->id.'/">Hide</a>';
+                                                        }
+                                                  echo '</h3></li>';
+                                        }
+                                        echo '</ul>';
+                                    } else {
+                                        echo '<h3>There are no entries for this blog.</h3>';
+                                    }
+                                    echo '<h3><a href="/admin/entry/add/">Add new blog</a></h3>';
+                                ?>
+                                </div>
+                            </div>
+
+
+
+

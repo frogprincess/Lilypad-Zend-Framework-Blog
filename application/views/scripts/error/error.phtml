@@ -1,0 +1,22 @@
+                            <div class="main-content span-22 left-gutter right-gutter">
+                                <h1 class="top-corners-10">Oops, you broke the internet!</h1>
+                                <div class="box bottom-corners-10">
+                                    <h2><?php echo $this->message ?></h2>
+                                    <?php if (isset($this->exception)): ?>
+                                        <h3>Exception information:</h3>
+                                        <b>Message:</b> <?php echo $this->exception->getMessage() ?>
+                                        <br/><br/>
+                                        <h3>Stack trace:</h3>
+                                        <pre>
+                                            <?php echo $this->exception->getTraceAsString() ?>
+                                        </pre>
+                                        <h3>Request Parameters:</h3>
+                                        <pre>
+                                            <?php echo var_export($this->request->getParams(), true) ?>
+                                        </pre>
+                                    <?php elseif ($this->code == 404) : ?>
+                                        <img src="/images/404.jpg" title="tumblweed" width="834px"/>
+                                    <?php endif ?>
+
+                                </div>
+                            </div>

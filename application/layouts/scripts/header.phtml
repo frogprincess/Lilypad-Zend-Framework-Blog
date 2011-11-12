@@ -1,0 +1,53 @@
+<?php echo $this->doctype() ?>
+
+<!--[if lt IE 7]><html lang="en" class="ie ie6"><![endif]-->
+<!--[if IE 7]><html lang="en" class="ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="ie8"><![endif]-->
+<!--[if IE 9]><html lang="en" class="ie9"><![endif]-->
+<!--[if gt IE 9]><html lang="en"><![endif]-->
+<!--[if !IE]>--><html lang="en"><!--<![endif]-->
+
+<head>
+  <?php
+  echo $this->headMeta()->appendHttpEquiv('Content-Type','text/html; charset=UTF-8');
+  $this->headLink()->headLink(array('rel' => 'shortcut icon', 'href' => '/favicon.png'), 'PREPEND');
+  echo $this->headTitle($this->title . 'Zend Blog');
+  ?>
+
+  <!-- Framework CSS -->
+  <?php
+  $this->headLink()->appendStylesheet('/css/blueprint/screen.css');
+  $this->headLink()->appendStylesheet('/css/blueprint/print.css', 'print');
+  $this->headLink()->appendStylesheet('/css/blueprint/ie.css', 'screen', 'lt IE 8');
+  ?>
+  <!-- Import fancy-type plugin for the sample page. -->
+  <?php
+  $this->headLink()->appendStylesheet('/css/blueprint/plugins/fancy-type/screen.css');
+  $this->headLink()->appendStylesheet('/css/mystyle.css');
+
+  echo $this->headLink();
+
+  $this->headScript()->appendFile('/js/jquery.js');  
+ 
+  echo $this->headScript();
+  ?>
+
+</head>
+
+<body id="<?php echo $this->bodyId ?>" class="<?php echo $this->bodyClass ?>">
+    <div class="container">
+    <div id="container" class="span-24 clearfix">
+        <div id="header" class="span-24">
+            <div id="logo" class="span-7">
+                <img src="/images/logo.png"/>
+            </div>
+            <div class="span-12 prepend-5 last">
+                <ul id="menu" class="span-12">
+                    <li class="home span-4"><a href="/"><span class="hide_text">home</span></a></li>                    
+                    <li class="blog span-4 last"><a href="/blog"><span class="hide_text">blog</span></a></li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div id="content" class="span-24 top-corners-15">

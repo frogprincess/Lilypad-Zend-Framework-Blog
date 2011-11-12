@@ -1,0 +1,28 @@
+                            <div class="main-content span-14 left-gutter right-gutter">
+                                <h1 class="top-corners-10">Zend Framework Blog</h1>
+                                <div class="box bottom-corners-10">
+                                    <?php if($this->message) echo "<h2 class=\"bloglistheader\">$this->message</h2>" ?>
+                                    <?php if($this->tag) echo "<h2 class=\"bloglistheader\">Posts tagged <i>$this->tag</i></h2>" ?>
+                                    <?php echo $this->partialLoop('partials/_entry.phtml', $this->blogs) ?>                                    
+                                </div>
+                            </div>
+                            <div id="side-content" class="span-7">
+                                <div class="side-content span-7">
+                                    <div class="outer-box top-corners-10 span-7">
+                                        <h2>More on...</h2>
+                                        <div class="inner-box">
+                                            <?php echo $this->cloud ?>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="side-content span-7">
+                                    <div class="outer-box top-corners-10 span-7">
+                                        <h2>Want a regular dose?</h2>
+                                        <div id="subscriberform" class="inner-box">
+                                            <?php echo $this->subscriberform ?>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>

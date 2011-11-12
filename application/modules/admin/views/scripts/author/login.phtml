@@ -1,0 +1,16 @@
+                            <div class="main-content span-22 last prepend-1 append-1">
+                                <h1 class="top-corners-10">Enter your author name and password below.</h1>
+                                <div class="box bottom-corners-10">
+                                <?php
+                                    if ($this->failedValidation) {
+                                        echo '<p>Some problems were detected with the submitted form.</p>';
+                                    }
+
+                                    if ($this->failedAuthentication) {
+                                        echo '<p>Sorry, but the credentials supplied could not be authenticated. Please try again.</p>';
+                                    }
+                                    echo $this->loginForm;
+                                ?>
+                                </div>
+                            </div>
+

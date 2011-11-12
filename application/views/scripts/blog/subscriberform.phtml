@@ -1,0 +1,14 @@
+
+    <form   action="<?php echo $this->element ->getAction() ?>"
+            method="<?php echo $this->element->getMethod() ?>"
+            id="<?php echo $this->element->getAttrib('id') ?>"
+            >
+
+        <dl>
+            <?php echo $this->element->subscribeemail ?>
+        </dl>
+        <dl class="submitbutton">
+            <?php echo $this->element->submit ?>
+        </dl>
+
+    </form>

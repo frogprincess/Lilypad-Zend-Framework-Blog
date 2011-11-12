@@ -1,0 +1,27 @@
+<form   action="<?php echo $this->element ->getAction() ?>"
+        method="<?php echo $this->element->getMethod() ?>"
+        id="<?php echo $this->element->getAttrib('id') ?>"
+        class="span-12 last">
+
+    <dl class="span-6">
+        <?php echo $this->element->username ?>
+    </dl>
+    <dl class="span-6">
+        <?php echo $this->element->email ?>
+    </dl>
+    <dl class="span-6 last">
+        <?php echo $this->element->url ?>
+    </dl>
+    <dl class="span-12 last messagebox">
+        <?php echo $this->element->comment ?>
+    </dl>
+    <dl class="span-12 last">
+        <?php echo $this->element->captcha ?>
+    </dl>
+    <dl class="span-12 last submitbutton">
+        <?php echo $this->element->submit ?>
+        <?php echo $this->element->entry ?>
+        <?php echo $this->element->published_date ?>
+    </dl>
+
+</form>

@@ -1,0 +1,27 @@
+                                    <?php if (!$this->hide) { ?>
+                                    <dl>
+                                        <dt>                                            
+                                            <span class=comments><?php echo $this->comments->total ?></span>
+                                            <h2 class="blog-h2"><?php echo $this->escape($this->title) ?></h2>
+                                            <span class="posted">Posted: <?php echo date("F jS Y", $this->published_date) ?></span>
+                                        </dt>
+                                        <dd><?php echo $this->content ?></dd>
+                                        <dd>
+                                        <?php if(!empty($this->extended_content)): ?>
+                                            <a name="extended"></a>
+                                            <?php echo $this->extended_content ?>
+                                        <?php endif; ?>
+                                        </dd>
+                                        <?php if ($this->tags): ?>
+                                            <dd>Tags: <?php echo $this->partialLoop('partials/_tags.phtml', $this->tags) ?></dd>
+                                        <?php endif ?>
+                                    </dl>
+                                    <?php if ($this->comments->total > 0): ?>
+                                        <h2><?php echo $this->comments->total ?> Response<?php if ($this->comments->total > 1) echo's' ?>:</h2>
+                                    <?php endif ?>
+
+                                    <?php echo $this->partialLoop('partials/_comments.phtml', $this->comments) ?>
+                                    <?php } ?>
+
+
+

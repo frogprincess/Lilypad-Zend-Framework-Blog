@@ -1,0 +1,22 @@
+                                    <?php if (!$this->hide) { ?>
+                                    <dl>
+                                        <dt>
+                                            <a href="<?php echo $this->entryUrl(array('id'=>$this->id,'title'=>$this->title)) . '#comment_form'?>"  title="Leave a comment">
+                                                <span class=comments><?php echo $this->comments->total ?></span>
+                                            </a>
+                                            <a href="<?php echo $this->entryUrl(array('id'=>$this->id,'title'=>$this->title)) ?>">
+                                                <h2 class="blog-h2"><?php echo $this->escape($this->title) ?></h2>
+                                            </a>
+                                            <span class="posted">Posted: <?php echo date("F jS Y", $this->published_date) ?></span>
+                                        </dt>
+                                        <dd>
+                                        <?php echo $this->content ?>
+                                        <?php if(!empty($this->extended_content)): ?>
+                                            <a href="<?php echo $this->entryUrl(array('id'=>$this->id,'title'=>$this->title)) ?>">Continue reading: <?php echo $this->escape($this->title) ?></a>
+                                        <?php endif; ?>
+                                        </dd>
+                                        <?php if ($this->tags): ?>
+                                        <dd>Tags: <?php echo $this->partialLoop('partials/_tags.phtml', $this->tags) ?></dd>
+                                        <?php endif ?>
+                                    </dl>
+                                    <?php } ?>

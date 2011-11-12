@@ -1,0 +1,30 @@
+                            <div class="main-content span-14 left-gutter right-gutter">
+                                <h1 class="top-corners-10">Zend Framework Blog</h1>
+                                <div class="box leftfloat bottom-corners-10">
+                                    <?php echo $this->partial('partials/_entryextended.phtml', $this->blog) ?>
+                                    <!--Comment form-->
+                                    <a name="comment_form"></a>
+                                    <h2>Leave a comment</h2>
+                                    <?php echo $this->form ?>
+                                </div>
+                            </div>
+                            <div id="side-content" class="span-7">
+                               <div class="side-content span-7">
+                                    <div class="outer-box top-corners-10 span-7">
+                                        <h2>More on...</h2>
+                                        <div class="inner-box">
+                                            <?php echo $this->cloud ?>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="side-content span-7">
+                                    <div class="outer-box top-corners-10 span-7">
+                                        <h2>Want a regular dose?</h2>
+                                        <div id="subscriberform" class="inner-box">
+                                            <?php echo $this->subscriberform ?>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>

@@ -1,0 +1,377 @@
+/* 
+    Document   : mystyle
+    Created on : 30-May-2010, 21:58:32
+    Author     : frogprincess
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+span {
+
+    position: relative;
+}
+
+span.small {
+    display: inline;
+}
+
+span.cloud, span.cloud a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+span.strike {
+    display: inline;
+    text-decoration: line-through;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+a {
+    outline: none;
+}
+
+dd a, a.inline {
+    display: inline;
+}
+
+p + p {
+    margin-top: 0;
+    text-indent: 0;
+}
+
+pre {
+    overflow: scroll;
+}
+
+textarea {
+    width: 428px;
+    height: auto;
+}
+
+.inline {
+    display: inline;
+}
+
+.hide_text {
+    /*position:absolute;*/
+    /*left: -3000px;*/
+}
+
+
+.top-corners-15, span.top-corners-15 img {
+    -moz-border-radius-topleft: 15px;
+    border-top-left-radius: 15px;
+    -moz-border-radius-topright: 15px;
+    border-top-right-radius: 15px;
+}
+
+.top-corners-10, span.top-corners-10 img {
+    -moz-border-radius-topleft: 10px;
+    border-top-left-radius: 10px;
+    -moz-border-radius-topright: 10px;
+    border-top-right-radius: 10px;
+}
+
+.bottom-corners-10, span.bottom-corners-10 img {
+    -moz-border-radius-bottomleft: 10px;
+    border-bottom-left-radius: 10px;
+    -moz-border-radius-bottomright: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.all-corners-5, span.all-corners-5 img {
+    -moz-border-radius-bottomleft: 5px;
+    border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    border-bottom-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    border-top-left-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-right-radius: 5px;
+}
+
+.all-corners-10, span.all-corners-10 img {
+    -moz-border-radius-bottomleft: 10px;
+    border-bottom-left-radius: 10px;
+    -moz-border-radius-bottomright: 10px;
+    border-bottom-right-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    border-top-left-radius: 10px;
+    -moz-border-radius-topright: 10px;
+    border-top-right-radius: 10px;
+}
+
+div#header {    
+
+}
+
+div#container {
+    float: none;
+    margin: 0 auto;
+    padding: 0;    
+}
+
+div.container {
+    width: 100%;    
+}
+
+
+.ie6 div.container, .ie7 div.container, .ie8 div.container {
+
+}
+
+div#content {
+    min-height: 300px;
+
+}
+
+div.left-gutter {
+    margin-left: 40px;
+}
+
+div.right-gutter {
+    margin-right: 50px;
+}
+
+/*footer*/
+div#footercontainer {
+
+  
+}
+
+div#footer {
+    float: none;
+    margin: 0 auto 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+   
+}
+
+
+div#footer ul {
+    margin: 0 10px 10px 10px;
+}
+
+div#footer li {
+    padding: 5px 0 0 25px;
+}
+
+div#footer a:hover, div#footer a h4:hover {
+    text-decoration: underline;
+}
+
+/*navigation*/
+li.home a {
+    
+}
+
+li.portfolio a {
+    
+}
+
+li.blog a {
+        
+}
+
+li.home a:hover {
+          
+}
+
+li.portfolio a:hover {
+           
+}
+
+li.blog a:hover {
+           
+}
+
+body#home li.home a {
+    
+}
+
+body#portfolio li.portfolio a {
+    
+}
+
+body#blog li.blog a {
+    
+}
+
+ul#menu {
+    display: inline;
+    list-style: none;
+}
+
+
+/*side content*/
+div#side-content {
+    
+}
+
+div.side-content div.outer-box {
+    margin-bottom: 20px;
+
+}
+
+div.side-content div.inner-box {
+    margin: 2px;
+    padding: 20px;
+}
+
+div.side-content div.inner-box img {
+    padding: 5px;
+
+}
+
+
+div.side-content h2 {
+    padding: 10px 0;
+    margin: 0;
+    text-align: center;
+
+}
+
+div.side-content p {
+    margin-bottom: 0;
+}
+
+
+
+/*blog*/
+body#blog dd {
+    margin: 0 10px;
+}
+
+body#blog span.comments {
+    display: inline-block;
+    float: left;
+    height: 30px;
+    width: 27px;
+    padding: 12px 0 0 8px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+
+
+body#blog h2.blog-h2 {
+    padding-top: 4px;
+    margin-bottom: 0;
+}
+
+body#blog span.posted {
+    margin-bottom: 20px;
+}
+
+body#blog dl.comments {
+    overflow: hidden;
+    padding: 10px;
+
+}
+
+body#blog span.commentdate {
+    font-size: 0.9em;
+    font-weight: normal;
+}
+
+body#blog div.main-content div.box p img {
+    float: left;
+    padding: 0 1.5em 0 0;
+}
+
+#tags {
+    text-align: justify;
+}
+
+#subscriberform, #blogroll {
+    text-align: center;    
+}
+
+#subscriberform label {
+    font-weight: normal;
+
+}
+
+#blogroll h4, #blogroll a {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#blogroll a:hover {
+    text-decoration: underline;
+}
+
+.tag1 {  font-size: 12px;  }
+
+.tag2 {  font-size: 14px;  }
+
+.tag3 {  font-size: 16px;  font-weight: bold;  }
+
+.tag4 {  font-size: 20px;  font-weight: bold;  }
+
+/*form*/
+form fieldset {
+    padding-left: 70px;
+}
+
+form#commentform {
+    padding: 0 20px;
+}
+
+form#commentform label {
+    width: 100%;
+}
+
+div.leftfloat {
+    float: left;
+}
+
+form dl {
+    margin-bottom: 0.5em;
+}
+
+form dl.submitbutton {
+    text-align: center;
+}
+
+form ul {
+    margin: 0;
+    padding: 0;
+}
+
+div#recaptcha_area {
+    width: 442px;
+}
+
+label {
+    display: inline-block;
+    width: 100px;
+}
+
+span.errorlabel {
+    color: red;
+    display: inline;
+}
+
+input#captcha {
+    display: none;
+}
+
+
+
+/* Admin */
+ul.entry-list a {
+    display: inline;
+}
+
+ul.entry-list h3.hide1 {
+    color: #aaaaaa;
+    font-style: italic;
+}
