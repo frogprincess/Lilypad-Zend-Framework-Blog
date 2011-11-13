@@ -1,6 +1,5 @@
-                            <div class="main-content span-22 left-gutter right-gutter">
-                                <h1 class="top-corners-10">Oops, you broke the internet!</h1>
-                                <div class="box bottom-corners-10">
+                            <section class="span-14 prepend-1 append-1">
+                                <h1>Oops, you broke the internet!</h1>          
                                     <h2><?php echo $this->message ?></h2>
                                     <?php if (isset($this->exception)): ?>
                                         <h3>Exception information:</h3>
@@ -17,6 +16,4 @@
                                     <?php elseif ($this->code == 404) : ?>
                                         <img src="/images/404.jpg" title="tumblweed" width="834px"/>
                                     <?php endif ?>
-
-                                </div>
-                            </div>
+                            </section>

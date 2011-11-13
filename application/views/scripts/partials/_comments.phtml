@@ -1,5 +1,7 @@
-                                        <dl class="<?php print ($this->partialCounter % 2 == 0) ? 'even' : ''; ?> comments all-corners-5">
-                                            <dt>
+                                        <article class="<?php print ($this->partialCounter % 2 == 0) ? 'even' : ''; ?> comments">
+                                            
+                                            <header>
+                                                <time><?php echo date("F jS Y", $this->published_date) ?></time>,&nbsp;
                                                 <?php if ($this->url != ''): ?>
                                                 <a href="<?php echo $this->url ?>" target="_blank">
                                                     <?php echo $this->username . ' says:'; ?>
@@ -7,7 +9,8 @@
                                                 <?php else: ?>
                                                     <?php echo $this->username . ' says:'; ?>
                                                 <?php endif; ?>
-                                                <span class="commentdate"><?php echo date("F jS Y", $this->published_date) ?></span>
-                                            </dt>
-                                            <dd class="comments"><?php echo $this->comment ?></dd>
-                                        </dl>
+                                            </header>
+                                            
+                                            
+                                            <?php echo $this->comment ?>
+                                        </article>

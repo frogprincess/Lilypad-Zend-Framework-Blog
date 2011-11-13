@@ -91,6 +91,7 @@ class Admin_EntryController extends Zend_Controller_Action {
             'description' => $values['description']
             );
         $entry = new Application_Model_Entry($data);
+        $entry->getTags();
         $entry_mapper = new Application_Model_EntryMapper();
         $entry_mapper->save($entry);
         $this->view->entrySaved = true;
@@ -98,29 +99,29 @@ class Admin_EntryController extends Zend_Controller_Action {
 
         $tag_string = strtolower($values['tags']);
         $tag_array = explode(',', $tag_string);
-        array_walk($tag_array, 'trim');
-        $tag_collection = $entry->getTags();
+        $tag_array = array_map('trim', $tag_array);
+        $tag_collection = $entry->tags; 
         $tag_array = array_unique($tag_array);
         $tag_mapper = new Application_Model_TagMapper();
 
-        // add new tags
-        $add = true;
+        // add new tags        
         foreach ($tag_array as $tag) {
+            $add = true;
             // if the tag does not already exist
-            foreach ($tag_collection as $obj) {
+            foreach ($tag_collection as $obj) { 
                 if($obj->tag == $tag) {
                    $add = false;
                 }
             }
-            if($add) {
+            if($add) { 
                 $tag_obj = new Application_Model_Tag(array('tag' => $tag, 'entry' => $data['id']));
                 $tag_mapper->save($tag_obj);
             }
         }
 
-        // delete removed tags
-        $delete = true;
+        // delete removed tags        
         foreach ($tag_collection as $obj) {
+            $delete = true;
             // if the tag does exist but is not in the array from the form
             foreach ($tag_array as $tag) {
                 if($obj->tag == $tag) {
@@ -177,10 +178,14 @@ class Admin_EntryController extends Zend_Controller_Action {
     protected function _addTags(){}
 
     protected function _formatTagString ($tags) {
+        return implode(', ', $this->_getTagArray($tags));
+    }
+
+    protected function _getTagArray ($tags) {
         foreach ($tags as $tag) {
             $tag_array[] = $tag->tag;
         }
-        return implode(',', $tag_array);
+        return $tag_array;
     }
 
     protected function _emailSubscribers ($entry) {
