@@ -27,7 +27,8 @@
 
   echo $this->headLink();
 
-  $this->headScript()->appendFile('/js/jquery.js');  
+  $this->headScript()->appendFile('/js/jquery.js');
+  $this->headScript()->appendFile('/js/modernizr.js');
  
   echo $this->headScript();
   ?>
