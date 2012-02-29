@@ -12,7 +12,7 @@ class RssController extends Zend_Controller_Action {
         $feedData = array();
 
         //Seting up the head information of the rss
-        $feedData['title']      = 'Zend Blog - The Blog';
+        $feedData['title']      = $this->message_details['blog'] . ' - The Blog';
         $feedData['link']       = $this->baseUrl();
         $feedData['published']     = time(); //Set the published date to now
         $feedData['charset']       = 'utf-8';
@@ -42,7 +42,7 @@ class RssController extends Zend_Controller_Action {
         $this->_helper->viewRenderer->setNoRender(true);
 
         //printing the rss feed to standard output
-        print $feed->saveXML();
+        $feed->saveXML();
 
         //sending the HTTP headers and output the rss feed
         $feed->send();

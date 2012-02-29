@@ -16,6 +16,7 @@ class Application_Model_CommentMapper extends Application_Model_Mapper
                 'comment' => $comment->comment,
                 'entry' => $comment->entry,
                 'published_date' => $comment->published_date,
+                'hide' => $comment->hide,
             );
             $comment->id = $this->_getGateway()->insert($data);
             $this->_setIdentity($comment->id, $comment);
@@ -28,6 +29,7 @@ class Application_Model_CommentMapper extends Application_Model_Mapper
                 'comment' => $comment->comment,
                 'entry' => $comment->entry,
                 'published_date' => $comment->published_date,
+                'hide' => $comment->hide,
             );
             $where = $this->_getGateway()->getAdapter()
                 ->quoteInto('id = ?', $comment->id);
@@ -45,18 +47,22 @@ class Application_Model_CommentMapper extends Application_Model_Mapper
             'username' => $result->username,
             'email' => $result->email,
             'url' => $result->url,
-            'comment' => $comment->comment,
-            'published_date' => $comment->published_date,
+            'comment' => $result->comment,
+            'entry' => $result->entry,
+            'published_date' => $result->published_date,
+            'hide' => $result->hide,
         ));
         $this->_setIdentity($id, $comment);
         return $comment;
     }
 
-    public function findAll($eid) {
+    public function findAll($eid, $include_hidden=true) {
+        $where = $include_hidden? 'hide=0 or hide=1' : 'hide=0';
         $select = $this->_getGateway()->select()
                 ->from($this->_getGateway(), array('id','username',
-                     'email','url', 'comment', 'published_date'))
+                     'email','url', 'comment', 'entry', 'published_date', 'hide'))
                 ->where('entry = '.$eid)
+                ->where($where)
                 ->order('published_date ASC');
         $raw = $this->_getGateway()->fetchAll($select)->toArray();
         return new Application_Model_CommentCollection($raw, $this);

@@ -16,6 +16,7 @@ class IndexController extends Zend_Controller_Action
 
         );
 
+        $this->view->headMeta()->appendName('description', implode(",", $this->description));
         $this->view->headMeta()->appendName('keywords', implode(",", $this->keywords));
     }
 

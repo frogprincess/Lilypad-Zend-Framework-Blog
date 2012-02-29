@@ -1,5 +1,9 @@
-                            <div class="span-22 last prepend-1 append-1">
-                                <h1>Edit: <?php echo $this->entry->title ?></h1>
+                            <section class="span-22 last prepend-1 append-1">
+                                <header>
+                                    <h1>
+                                        <?php echo $this->heading.'<a href="'.$this->entryUrl(array('id'=>$this->entry->id,'title'=>$this->entry->title)).'">'.$this->entry->title.'</a>'?>
+                                    </h1>
+                                </header>
                                 <div class="box">
                                 <?php
                                     if ($this->failedValidation) {
@@ -14,9 +18,11 @@
                                         echo '<h2>The entry could not be found in the database.</h2>';
                                     }
 
+                                    echo '<a href="/admin">Back to Admin Index</a>';
+
                                     echo $this->entryForm;
                                 ?>
                                 </div>
-                            </div>
+                            </section>
 
 

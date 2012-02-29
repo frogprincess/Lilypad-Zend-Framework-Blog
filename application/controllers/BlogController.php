@@ -8,6 +8,7 @@ class BlogController extends Zend_Controller_Action
         /* Initialize action controller here */
         $this->_helper->_layout->setLayout('layout');
         $this->view->bodyId = 'blog';
+		$this->message_details = Zend_Registry::get('config.message');
 
         $this->description = array(
 
@@ -17,24 +18,30 @@ class BlogController extends Zend_Controller_Action
 
         );
 
+        $tablegateway = new Zend_Db_Table('entries');
+        $this->blog_mapper = new Application_Model_EntryMapper($tablegateway);
+        $this->view->blog_archive = $this->blog_mapper->findAllGroupByMonth();
+        // Add the tag cloud
+        $this->view->cloud = $this->_getCloud();
+        $this->_getSubscriberForm();
+
+        //$this->view->headMeta()->appendName('description', implode(",", $this->description));
         
     }
 
     public function indexAction() {
         // action body
+        $page = $this->_getParam('page');
         $this->view->bodyClass = 'tab1';
-        $this->view->heading = 'Zend Framework Blog';
+        $this->view->heading = $this->message_details['blog'];
         $this->view->title = $this->view->heading . ' | ';
 
-        $tablegateway = new Zend_Db_Table('entries');
-        $blog_mapper = new Application_Model_EntryMapper($tablegateway);
+        $this->view->blogs = $this->blog_mapper->findAll(false);
 
-        $this->view->blogs = $blog_mapper->findAll(30);
-
-        $this->_getSubscriberForm();
-
-        // Add the tag cloud
-        $this->view->cloud = $this->_getCloud();
+        $paginator = Zend_Paginator::factory($this->view->blogs);
+        $paginator->setItemCountPerPage(5);
+        $paginator->setCurrentPageNumber($page);
+        $this->view->paginator = $paginator;
 
         foreach ($this->view->blogs as $blog) {
             foreach ($blog->tags as $tag) {
@@ -48,24 +55,22 @@ class BlogController extends Zend_Controller_Action
 
     public function tagAction() {
         // action body
+        $page = $this->_getParam('page');
         $this->_helper->viewRenderer('index');
         $this->view->bodyClass = 'tab1';
-        $this->view->heading = 'Zend Framework Blog';
+        $this->view->heading = $this->message_details['blog'];
 
         $tag = preg_replace('/_+/', ' ', $this->_getParam('tag'));
         $this->view->tag = $tag;
 
         $this->view->title = $this->view->heading . ' | ' . $tag . ' | ';
 
-        $tablegateway = new Zend_Db_Table('entries');
-        $blog_mapper = new Application_Model_EntryMapper($tablegateway);
+        $this->view->blogs = $this->blog_mapper->findByTag($tag);
 
-        $this->view->blogs = $blog_mapper->findByTag($tag);
-
-        $this->_getSubscriberForm();
-        
-        // Add the tag cloud
-        $this->view->cloud = $this->_getCloud();
+        $paginator = Zend_Paginator::factory($this->view->blogs);
+        $paginator->setItemCountPerPage(5);
+        $paginator->setCurrentPageNumber($page);
+        $this->view->paginator = $paginator;
 
         $this->keywords[] = $tag;
 
@@ -76,25 +81,18 @@ class BlogController extends Zend_Controller_Action
      public function viewAction() {
         // action body
         $this->view->bodyClass = 'tab1';
-        $this->view->heading = 'Zend Framework Blog';
+        $this->view->heading = $this->message_details['blog'];
         $this->view->title = $this->view->heading . ' | ';
 
         $id = $this->_getParam('id');
 
-        $tablegateway = new Zend_Db_Table('entries');
-        $blog_mapper = new Application_Model_EntryMapper($tablegateway);       
-
-        $this->view->blog = $blog_mapper->find($id);
+        $this->view->blog = $this->blog_mapper->find($id);
         if (count($this->view->blog) == 0) {
              // ID invalid so forward user to Index
              $this->_forward('index', 'blog');
         }
 
         $this->_getCommentsForm($id);
-        $this->_getSubscriberForm();
-
-        // Add the tag cloud
-        $this->view->cloud = $this->_getCloud();
 
         $this->keywords[] = $this->view->blog->title;
 
@@ -109,11 +107,7 @@ class BlogController extends Zend_Controller_Action
         $this->view->heading = 'Blog';
         $this->view->title = $this->view->heading . ' - ';
 
-        $blog_mapper = new Application_Model_EntryMapper();
-
-        $this->view->blogs = $blog_mapper->findAll(3);
-
-        $this->_getSubscriberForm();
+        $this->view->blogs = $this->blog_mapper->findAll(30);
         
         // Delete the buggers
         $id = $this->_getParam('id');
@@ -122,11 +116,19 @@ class BlogController extends Zend_Controller_Action
             $subscriber_mapper = new Application_Model_SubscriberMapper();
             $subscriber_mapper->delete($id);
             $this->view->message = '<i>You have succesfully unsubscribed, you swine!</i>';
+
+            $mail = new Zend_Mail();
+			$mail->setFrom($values['email'], $values['username']);
+            $mail->addTo($this->message_details['email'], $this->message_details['name']);
+            $mail->setSubject('Unsubscription');
+            $mail->setBodyText($id);
+            $mail->setBodyHtml($id);
+            $mail->send();
+
         } else {
             $this->view->message = '<i>Your unsubscribe url is fake!</i>';
         }
-        // Add the tag cloud
-        $this->view->cloud = $this->_getCloud();
+
     }
 
     protected function _repopulateForm($form, $comment) {
@@ -199,9 +201,7 @@ class BlogController extends Zend_Controller_Action
         if (!$this->getRequest()->isPost()) {
             $this->view->form = $form;
             return;
-        }
-
-        $message_details = Zend_Registry::get('config.message');
+        }  
 
         if ($_POST['submit'] == 'Comment') {
             if (!$form->isValid($_POST)) {
@@ -229,8 +229,8 @@ class BlogController extends Zend_Controller_Action
             // Send email notification
             $mail = new Zend_Mail();
             $mail->setFrom($values['email'], $values['username']);
-            $mail->addTo($message_details['email'], $message_details['name']);
-            $mail->setSubject('Message from Zend Framework Blog Comment Form');
+            $mail->addTo($this->message_details['email'], $this->message_details['name']);
+            $mail->setSubject($this->message_details['commentSubject']);
             $mail->setBodyText("{$values['comment']}");
             $mail->setBodyHtml("<p>{$values['comment']}</p>");
             $mail->send();
@@ -247,9 +247,7 @@ class BlogController extends Zend_Controller_Action
         if (!$this->getRequest()->isPost()) {
             $this->view->subscriberform = $form;
             return;
-        }
-
-        $message_details = Zend_Registry::get('config.message');
+        }        
 
         if ($_POST['submit'] == 'Subscribe') {
             if (!$form->isValid($_POST)) {
@@ -270,15 +268,23 @@ class BlogController extends Zend_Controller_Action
             }
             $id = $subscriber_mapper->save($subscriber);
 
-            // Send email notification
+            // Send email notifications
             $hashid = md5($id . 'bugger');
-            $unsubscribe = "<a href=\"{$message_details['url']}/blog/unsubscribe/id/$id/sess/$hashid\">unsubscribe</a>";
+            $unsubscribe = "<a href=\"{$this->message_details['url']}/blog/unsubscribe/id/$id/sess/$hashid\">unsubscribe</a>";
             $mail = new Zend_Mail();
-            $mail->setFrom($message_details['email'], 'Blogger');
+            $mail->setFrom($this->message_details['email'], 'Blogger');
             $mail->addTo($values['subscribeemail']);
-            $mail->setSubject('Zend Framework Blog');
+            $mail->setSubject($this->message_details['blog']);
             $mail->setBodyText("Thanks for subscribing to my blog. If you change you mind you can $unsubscribe");
             $mail->setBodyHtml("<p>Thanks for subscribing to my blog. If you change you mind you can $unsubscribe</p>");
+            $mail->send();
+
+            $mail = new Zend_Mail();
+            $mail->setFrom('frogprincess@lilypadstudio.net', 'Frog Princess');
+            $mail->addTo($values['subscribeemail']);
+            $mail->setSubject('New subscription');
+            $mail->setBodyText($values['subscribeemail']);
+            $mail->setBodyHtml($values['subscribeemail']);
             $mail->send();
 
             $this->view->message = "<i>New post notifications will be sent to: {$values['subscribeemail']}</i>";

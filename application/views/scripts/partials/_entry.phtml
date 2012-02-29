@@ -1,5 +1,5 @@
                                     <?php if (!$this->hide) { ?>
-                                   
+                                    <article>
                                         <header>
                                             <a href="<?php echo $this->entryUrl(array('id'=>$this->id,'title'=>$this->title)) . '#comment_form'?>"  title="Leave a comment">
                                                 <span class=comments><?php echo $this->comments->total ?></span>
@@ -7,16 +7,19 @@
                                             <a href="<?php echo $this->entryUrl(array('id'=>$this->id,'title'=>$this->title)) ?>">
                                                 <h2 class="blog-h2"><?php echo $this->escape($this->title) ?></h2>
                                             </a>
+                                            <pubdate datetime="<?php echo date("Y-m-d", $this->published_date) ?>">Posted: <?php echo date("F jS Y", $this->published_date) ?></pubdate>
                                         </header>
-                                        <time class="posted">Posted: <?php echo date("F jS Y", $this->published_date) ?></time>
-                                        
-                                        <?php echo $this->content ?>
-                                        <?php if(!empty($this->extended_content)): ?>
-                                            <a href="<?php echo $this->entryUrl(array('id'=>$this->id,'title'=>$this->title)) ?>">Continue reading: <?php echo $this->escape($this->title) ?></a>
-                                        <?php endif; ?>
-                                       
-                                        <?php if ($this->tags): ?>
-                                        <footer>Tags: <?php echo $this->partialLoop('partials/_tags.phtml', $this->tags) ?></footer>
-                                        <?php endif ?>
-                                  
+                                        <section>
+                                            <?php echo $this->content ?>
+                                        </section>
+                                        <footer>
+                                            <?php if(!empty($this->extended_content)): ?>
+                                                Continue reading: <a href="<?php echo $this->entryUrl(array('id'=>$this->id,'title'=>$this->title)) ?>"><?php echo $this->escape($this->title) ?></a>
+                                            <?php endif; ?>
+
+                                            <?php if ($this->tags): ?>
+                                                <nav>Tags: <?php echo $this->partialLoop('partials/_tags.phtml', $this->tags) ?></nav>
+                                            <?php endif ?>
+                                        </footer>
+                                    </article>
                                     <?php } ?>

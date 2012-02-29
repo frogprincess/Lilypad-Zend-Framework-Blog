@@ -1,28 +1,29 @@
                                     <?php if (!$this->hide) { ?>
-                                   
-                                        <header>
-                                            <span class=comments><?php echo $this->comments->total ?></span>
-                                            <h2 class="blog-h2"><?php echo $this->escape($this->title) ?></h2>
-                                        </header>
-                                        <time class="posted">Posted: <?php echo date("F jS Y", $this->published_date) ?></time>
-
-                                        <?php echo $this->content ?>
-                                      
-                                        <?php if(!empty($this->extended_content)): ?>
-                                            <a name="extended"></a>
-                                            <?php echo $this->extended_content ?>
-                                        <?php endif; ?>
-                                       
-                                        <?php if ($this->tags): ?>
-                                            <footer>Tags: <?php echo $this->partialLoop('partials/_tags.phtml', $this->tags) ?></footer>
-                                        <?php endif ?>
-                                   
-                                    <?php if ($this->comments->total > 0): ?>
-                                        <h2><?php echo $this->comments->total ?> Response<?php if ($this->comments->total > 1) echo's' ?>:</h2>
+             
+                                    <header>
+                                        <span class=comments><?php echo $this->comments->total ?></span>
+                                        <h2 class="blog-h2"><?php echo $this->escape($this->title) ?></h2>
+                                        <pubdate datetime="<?php echo date("Y-m-d", $this->published_date) ?>">Posted: <?php echo date("F jS Y", $this->published_date) ?></pubdate>
+                                    </header>    
+                                    <?php echo $this->content ?>
+                                    <?php if(!empty($this->extended_content)): ?>
+                                        <a name="extended"></a>
+                                        <?php echo $this->extended_content ?>
+                                    <?php endif; ?>
+                                    <footer>
+                                    <?php if ($this->tags): ?>
+                                        <nav>Tags: <?php echo $this->partialLoop('partials/_tags.phtml', $this->tags) ?></nav>
                                     <?php endif ?>
+                                    </footer>
 
-                                    <?php echo $this->partialLoop('partials/_comments.phtml', $this->comments) ?>
-                                    <?php } ?>
 
+	                                <header>
+	                                    <?php if ($this->comments->total > 0): ?>
+	                                        <h2><?php echo $this->comments->total ?> Response<?php if ($this->comments->total > 1) echo's' ?>:</h2>
+	                                    <?php endif ?>
+	                                </header>
+	                                <?php echo $this->partialLoop('partials/_comments.phtml', $this->comments) ?>
+
+		                   			<?php } ?>
 
 

@@ -2,28 +2,17 @@
                                 <header>
                                     <h1>Zend Framework Blog</h1>
                                 </header>
-                                <article class="box">
+                                <article class="box span-14">
                                     <?php echo $this->partial('partials/_entryextended.phtml', $this->blog) ?>
-                                </article>
                                     <!--Comment form-->
                                     <a name="comment_form"></a>
-                                    <h2>Leave a comment</h2>
-                                    <?php echo $this->form ?>                                
+                                    <section>
+                                        <header>
+                                            <h2>Leave a comment</h2>
+                                        </header>                                    
+                                        <?php echo $this->form ?>
+                                    </section>
+                                </article>
                             </section>
 
-                            <aside class="span-8 last">
-                                <div class="box">
-                                    <header>
-                                        <h2>More on...</h2>
-                                    </header>
-                                    <?php echo $this->cloud ?>
-                                </div>
-                                <div class="box">
-                                    <header>
-                                      <h2>Want a regular dose?</h2>
-                                    </header>
-                                    <div id="subscriberform">
-                                        <?php echo $this->subscriberform ?>
-                                    </div>
-                                </div>
-                            </aside>
+                            <?php include_once 'blog_side.phtml'; ?>

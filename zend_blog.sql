@@ -58,6 +58,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `comment` longtext NOT NULL,
   `entry` int(11) NOT NULL,
   `published_date` int(11) NOT NULL,
+  `hide` int(1) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
 

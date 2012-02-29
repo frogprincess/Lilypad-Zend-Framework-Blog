@@ -45,19 +45,22 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $front = Zend_Controller_Front::getInstance();
         $router = $front->getRouter();
 
-        $tag_route = new Zend_Controller_Router_Route_Regex(
-            'tag\/(.*)',
-             array(
-                 'module' => 'application',
-                 'controller' => 'blog',
-                 'action'     => 'tag'
-             ),
-             array(
-                 'tag' => 1 // maps first subpattern "(*)" to "tag" parameter
-             )
-        );
+        $config = new Zend_Config_Ini(APPLICATION_PATH . '/configs/application.ini', 'production');
+        $router->addConfig($config,'routes');
 
-        $router->addRoute('tag', $tag_route);
+//        $tag_route = new Zend_Controller_Router_Route_Regex(
+//            'tag\/(.*)',
+//             array(
+//                 'module' => 'application',
+//                 'controller' => 'blog',
+//                 'action'     => 'tag'
+//             ),
+//             array(
+//                 'tag' => 1 // maps first subpattern "(*)" to "tag" parameter
+//             )
+//        );
+//
+//        $router->addRoute('tag', $tag_route);
 
         $blog_route = new Zend_Controller_Router_Route_Regex(
             '[0-9a-z\._!;,\+\-%]+-(\d+)', // all possible single entry URLs

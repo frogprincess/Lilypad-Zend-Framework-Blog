@@ -65,10 +65,10 @@ class Application_Model_Entry extends Application_Model_Entity {
         $this->_data['comments'] = $comments;
     }
 
-    public function getComments() {
+    public function getComments($include_hidden=true) {
         if (!isset($this->_data['comments'])) {
             $this->_commentMapper = new $this->_commentMapperClass;
-            $this->_data['comments'] = $this->_commentMapper->findAll($this->id);
+            $this->_data['comments'] = $this->_commentMapper->findAll($this->id, $include_hidden);
         }
         return $this->_data['comments'];
     }

@@ -10,7 +10,8 @@ class Application_Model_Comment extends Application_Model_Entity
         'url' => '',
         'comment' => '',
         'published_date' => '',
-        'entry' => ''
+        'entry' => '',
+        'hide' => 0
     );
 
 }

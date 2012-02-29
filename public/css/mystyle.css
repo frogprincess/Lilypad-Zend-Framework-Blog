@@ -41,7 +41,7 @@ body#blog h2.blog-h2 {
     margin-bottom: 0;
 }
 
-body#blog time.posted {
+body#blog pubdate {
     display: block;
     margin-bottom: 20px;
 }

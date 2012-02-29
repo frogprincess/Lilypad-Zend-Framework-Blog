@@ -1,19 +1,38 @@
 
-                            <div class="span-22 last prepend-1 append-1">
-                                <h1>Blog Editing</h1>
+                            <section class="span-22 last prepend-1 append-1">
+                                <header>
+                                    <h1>Blog Editing</h1>
+                                </header>
                                 <div class="box">
                                 <?php
                                     if (count($this->entries) > 0 ) {
                                         echo '<ul class="entry-list">';
                                         foreach ($this->entries as $entry) {
-                                            echo '<li><h3 class="hide' . $entry->hide. '">'.$entry->title.' -
-                                                    <a href="/admin/entry/edit/id/'.$entry->id.'/">Edit</a> | ';
-                                                        if ($entry->hide) {
-                                                            echo '<a href="/admin/entry/show/id/'.$entry->id.'/">Show</a>';
-                                                        } else {
-                                                            echo '<a href="/admin/entry/hide/id/'.$entry->id.'/">Hide</a>';
-                                                        }
-                                                  echo '</h3></li>';
+                                            echo '<li><h2 class="hide' . $entry->hide. '">'.$entry->title.' -
+                                            <a href="/admin/entry/edit/id/'.$entry->id.'/">Edit</a> | ';
+                                            if ($entry->hide) {
+                                                echo '<a href="/admin/entry/show/id/'.$entry->id.'/">Show</a>';
+                                            } else {
+                                                echo '<a href="/admin/entry/hide/id/'.$entry->id.'/">Hide</a>';
+                                            }
+                                            echo '</h2>';
+                                            
+                                            if ($entry->comments->total > 0 ) {
+                                                echo '<section><h3>Comments:</h3>';
+                                                echo '<ul>';
+                                                foreach ($entry->comments as $comment) {
+                                                    echo '<li><h4 class="hide' . $comment->hide. '">'.substr(strip_tags($comment->comment), 0, 30).'... - ';
+                                                    if ($comment->hide) {
+                                                        echo '<a href="/admin/comment/show/id/'.$comment->id.'/">Show</a>';
+                                                    } else {
+                                                        echo '<a href="/admin/comment/hide/id/'.$comment->id.'/">Hide</a>';
+                                                    }
+                                                    echo '</h4>';
+                                                    echo '</li>';
+                                                }
+                                                echo '</ul></section>';
+                                            }    
+                                            echo '</li>';
                                         }
                                         echo '</ul>';
                                     } else {
@@ -22,7 +41,7 @@
                                     echo '<h3><a href="/admin/entry/add/">Add new blog</a></h3>';
                                 ?>
                                 </div>
-                            </div>
+                            </section>
 
 
 

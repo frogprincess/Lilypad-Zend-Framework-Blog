@@ -1,6 +1,8 @@
-                            <div class="span-22 last prepend-1 append-1">
-                                <h1>Enter your author name and password below.</h1>
-                                <div class="box">
+                            <section class="span-22 last prepend-1 append-1">
+                                <header>
+                                    <h1 class="top-corners-10">Enter your author name and password below.</h1>
+                                </header>
+                                <div class="box bottom-corners-10">
                                 <?php
                                     if ($this->failedValidation) {
                                         echo '<p>Some problems were detected with the submitted form.</p>';
@@ -12,5 +14,5 @@
                                     echo $this->loginForm;
                                 ?>
                                 </div>
-                            </div>
+                            </section>
 
