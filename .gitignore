@@ -1,2 +1,8 @@
 *.ini
 *.log
+public/js/tinymce
+public/css/blueprint
+nbproject
+library
+
+

@@ -1,0 +1,25 @@
+    <!--
+    See http://developer.yahoo.com/ypatterns/pattern.php?pattern=searchpagination
+    -->
+
+    <?php if ($this->pageCount): ?>
+    <nav class="paginationControl">
+    <!-- Previous page link -->
+    <?php if (isset($this->previous)): ?>
+      <a class="previous"href="<?php echo $this->url(array('page' => $this->previous)); ?>">
+          <h4>View newer posts</h4>
+      </a> 
+
+    <?php endif; ?>
+
+
+
+    <!-- Next page link -->
+    <?php if (isset($this->next)): ?>
+      <a class="next" href="<?php echo $this->url(array('page' => $this->next)); ?>">
+          <h4>View older posts</h4>
+      </a>
+
+    <?php endif; ?>
+    </nav>
+    <?php endif; ?>

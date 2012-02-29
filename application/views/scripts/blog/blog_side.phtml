@@ -1,0 +1,36 @@
+                            <aside class="span-8 last">                                
+                                <article class="box">
+                                    <header>
+                                        <h2>More on...</h2>
+                                    </header>
+                                    <nav>
+                                        <?php echo $this->cloud ?>
+                                    </nav>
+                                </article>
+
+                                <article class="box">
+                                    <header>
+                                        <h2>Archive</h2>
+                                    </header>
+                                    <nav>
+                                        <?php
+                                        foreach ($this->blog_archive as $year=>$months) {
+                                            foreach($months as $month=>$entries) {
+                                                echo '<h3>' . $month . ' - ' . $year . '</h3>';
+                                                echo '<ul>';
+                                                echo $this->partialLoop('partials/_archive.phtml', $entries);
+                                                echo '</ul>';
+                                            }
+                                        }
+                                        ?>
+                                    </nav>
+                                </article>
+
+                                <article class="box">
+                                    <header>
+                                        <h2>Want a regular dose?</h2>
+                                    </header>
+                                    <div id="subscriberform" class="inner-box">
+                                        <?php echo $this->subscriberform ?>
+                                    </div>
+                                </article>
