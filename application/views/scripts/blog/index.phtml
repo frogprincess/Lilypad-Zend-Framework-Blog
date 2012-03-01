@@ -1,15 +1,15 @@
                             <section class="span-14 prepend-1 append-1">
                                 <header>
                                     <h1>Zend Framework Blog</h1>
-								</header>
-                                <article class="box">
+				</header>
+                                <article class="box clearfix">
                                     <?php if($this->message) echo "<h2 class=\"bloglistheader\">$this->message</h2>" ?>
                                     <?php if($this->tag) echo "<h2 class=\"bloglistheader\">Posts tagged <i>$this->tag</i></h2>" ?>
                                 
                                     <?php echo $this->partialLoop('partials/_entry.phtml', $this->blogs) ?>
 									
-									<?php echo $this->paginationControl($this->paginator,
-                                    'Sliding', 'partials/_pagination.phtml'); ?>
+                                    <?php echo $this->paginationControl($this->paginator,
+                                                                        'Sliding', 'partials/_pagination.phtml'); ?>
                                  </article>
                             </section>
 
