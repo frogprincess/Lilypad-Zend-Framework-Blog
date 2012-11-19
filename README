@@ -1,0 +1,50 @@
+When I decided to learn how to use Zend Framework, I wanted a detailed tutorial to follow. I really wanted to build my 
+own blog. So I googled until I came across a fantastically detailed and well explained online book by Pádraic Brady 
+called Survive the Deep End. Unfortunately, as of writing, it is still incomplete and has not been edited since 2009. 
+So I followed the tutorial as far as it went and then I completed the code to suit my requirements. You are looking at 
+the result so far.
+
+My blog code includes:
+
+    Display of a short version of all blogs
+    Display of individual blogs
+    Lists of most recent blogs
+    Tag cloud
+    Display of blogs by tag
+    Commenting
+    Subscription
+    RSS feed
+    Admin interface for adding/editing/hiding posts (utilises tinymce)
+
+My blog code does not include:
+
+    Unit testing
+    Admin interface for adding/editing authors
+    Documentation
+    HTML5 - inprogress
+
+Installation instructions:
+
+    Knowledge of the LAMP stack is assumed
+    Download my code from github
+    Point your directory root to Lilypad_Zend_Framework_Blog/public
+    Download Zend Framework version 1.x (http://www.zend.com/en/community/downloads)
+    Download Blueprint Framework (http://blueprintcss.org/)
+    Download Tinymce (http://www.tinymce.com/)
+    Add or link <downloads>/ZendFramework-1.x.x/library/Zend to Lilypad_Zend_Framework_Blog/library
+    Add or link <downloads>/tinymce to Lilypad_Zend_Framework_Blog/public/js
+    Add or link <downloads>/ joshuaclayton-blueprint-css-xxxxxxx/blueprint to Lilypad_Zend_Framework_Blog/public/css
+    Create a mysql database
+    Run the script Lilypad_Zend_Framework_Blog/zend_blog.sql to set up your tables and base data
+    Edit the relevant sections of Lilypad_Zend_Framework_Blog/config/application.ini (database connection, email, name etc)
+    Navigate to <yoursite>/admin
+    Username: admin
+    Password: password
+    Author credentials are stored in the author table
+    You can view and edit a working demo at http://demo.lilypadstudio.net. The database is restored nightly, so feel 
+    free to play!
+
+To understand the code, check out Survive the Deep End as a starting point. This post is not a tutorial. It is intended 
+to help anyone looking for a working Zend Framework Blog to pull apart and analyse. It is a work in progress and I would 
+like to add the features I have listed as missing above. Feel free to use it as you wish. All I ask is that you credit 
+me inconspicuaously, and feed back to me any improvements that you make, preferably using github. I am still learning.
